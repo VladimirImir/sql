@@ -1,0 +1,8 @@
+***** SQL. 4. DDL & DML
+*****
+CREATE DATABASE company_repository;
+
+CREATE SCHEMA  company_storage;
+
+DROP SCHEMA company_storage;
+*****
