@@ -6,3 +6,13 @@ CREATE SCHEMA  company_storage;
 
 DROP SCHEMA company_storage;
 *****
+***** SQL. 5. Создание таблиц
+*****
+CREATE TABLE company_storage.company (
+    id INT,
+    name VARCHAR(128),
+    data DATE
+);
+
+-- DROP TABLE public.company;
+*****
