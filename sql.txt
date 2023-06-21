@@ -35,5 +35,20 @@ VALUES (1, 'Google', '2001-01-01'),
        (2, 'Apple', '2002-10-29'),
        (3, 'Facebook', '1998-09-13');
 *****
-*****
+***** SQL. 7. Автогенерируемые идентификаторы
+CREATE TABLE employee
+(
+    id         SERIAL PRIMARY KEY,
+    first_name VARCHAR(128) NOT NULL,
+    last_name  VARCHAR(128) NOT NULL,
+    salary     INT,
+    UNIQUE (first_name, last_name)
+);
+
+-- DROP TABLE employee;
+
+insert into employee (first_name, last_name, salary)
+values ('Ivan', 'Ivanov', 1000),
+       ('Petr', 'Petrov', 2000),
+       ('Sveta', 'Svetikova', 1500);
 *****
