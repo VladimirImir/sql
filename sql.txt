@@ -133,3 +133,18 @@ values ('Ivan', 'Sidorov', 500, 1),
        ('Petr', 'Petrov', 2000, 3),
        ('Sveta', 'Svetikova', 1500, NULL);
 *****
+***** SQL. 12. Объединение запросов - UNION
+*****
+SELECT
+    id,first_name
+FROM employee
+WHERE company_id IS NOT NULL
+UNION
+SELECT
+    id, first_name
+FROM employee
+WHERE salary IS NULL;
+
+-- Для удаления дубликатов из одного SELECT
+-- можно использовать ключевое слово DISTINCT.
+*****
