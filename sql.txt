@@ -93,3 +93,21 @@ ORDER BY salary DESC;
 --LIMIT 2
 --OFFSET 2;
 *****
+***** SQL. 10. Агрегирующие и встроенные функции
+*****
+SELECT
+       -- sum(salary) -- Вся сумма.
+       -- avg(salary) -- Средняя сумма.
+       -- max(salary) -- Максимальная сумма.
+       -- min(salary) -- Минимальная сумма.
+       -- count(salary) -- Кол-во строк в нашей выборке.
+       -- count(*) -- Кол-во строк в нашей выборке.
+       -- upper(first_name) -- Приводит наше поле в верхний регистр.
+       -- lower(first_name) -- Приводит наше поле в нижний регистр.
+       -- concat(first_name, ' ', last_name, ' ', salary) -- Объединяет все строки перечисленные.
+       -- concat(first_name, ' ', last_name, ' ', salary) fio -- Объединяет все строки перечисленные.
+
+FROM employee empl;
+
+SELECT now()
+*****
