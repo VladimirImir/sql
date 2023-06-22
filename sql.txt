@@ -70,3 +70,26 @@ ORDER BY salary DESC
 LIMIT 2
 OFFSET 2;
 *****
+***** SQL. 9. Фильтрация выборки - WHERE
+*****
+SELECT DISTINCT id,
+                first_name f_name,
+                last_name  l_name,
+                salary
+FROM employee empl
+-- WHERE salary > 1200
+-- WHERE first_name = 'Ivan'
+-- WHERE first_name LIKE 'Pet%'
+-- WHERE last_name LIKE '%ov%'
+-- WHERE first_name ILIKE 'ivan'
+-- WHERE salary BETWEEN 1000 AND 1500
+-- WHERE salary IN (1000, 1100, 2000)
+--WHERE salary IN (1000, 1100, 2000) AND first_name LIKE 'Iv%'
+-- У AND приоритет выше чем у OR.
+WHERE salary IN (1000, 1100, 2000)
+   OR (first_name LIKE 'Iv%'
+    AND last_name ILIKE '%ov%')
+ORDER BY salary DESC;
+--LIMIT 2
+--OFFSET 2;
+*****
