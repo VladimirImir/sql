@@ -52,3 +52,21 @@ values ('Ivan', 'Ivanov', 1000),
        ('Petr', 'Petrov', 2000),
        ('Sveta', 'Svetikova', 1500);
 *****
+***** SQL. 8. Создание запросов - SELECT. Сортировка выборки - ORDER BY
+*****
+-- Alias (псевдонимы) для полей и таблиц.
+-- DISTINCT - дублирующиеся данные убираются.
+-- OFFSET 2 - пробустить 2 записи.
+-- LIMIT 2 - отобразить только 2 записи.
+-- ORDER BY salary ASC - сортирует по возрастанию.
+-- ORDER BY salary DESC - сортирует по убыванию.
+SELECT DISTINCT
+       id,
+       first_name f_name,
+       last_name l_name,
+       salary
+FROM employee empl
+ORDER BY salary DESC
+LIMIT 2
+OFFSET 2;
+*****
