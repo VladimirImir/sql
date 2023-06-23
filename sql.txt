@@ -175,5 +175,52 @@ FROM employee
 ORDER BY salary
 LIMIT 2;
 *****
+***** SQL. 14. Удаление строк - DELETE
 *****
+
+CREATE TABLE employee
+(
+    id         SERIAL PRIMARY KEY,
+    first_name VARCHAR(128) NOT NULL,
+    last_name  VARCHAR(128) NOT NULL,
+    -- company_id INT REFERENCES company (id) ON DELETE
+    -- ON DELETE CASCADE > Если мы удаляем компанию то и удаляем
+    -- всего сотрудников в ней. Что бы не удалять сотрудника
+    -- перед тем как удаляем компанию.
+    company_id INT REFERENCES company (id) ON DELETE CASCADE ,
+    salary     INT,
+    UNIQUE (first_name, last_name)
+   -- FOREIGN KEY (company_id) REFERENCES company (id)
+);
+
+ DROP TABLE employee;
+
+insert into employee (first_name, last_name, salary, company_id)
+values ('Ivan', 'Sidorov', 500, 1),
+       ('Ivan', 'Ivanov', 1000, 2),
+       ('Arni', 'Paramonov', NULL, 2),
+       ('Petr', 'Petrov', 2000, 3),
+       ('Sveta', 'Svetikova', 1500, NULL);
+
+
+       DELETE FROM employee
+       WHERE salary IS NULL;
+
+       DELETE
+       FROM employee
+       WHERE salary = (SELECT max(salary) FROM employee);
+
+       -- Сначала удаляем id компании.
+       DELETE
+       FROM employee
+       WHERE company_id = 1;
+
+       -- После только можно удалить саму компанию.
+       DELETE
+       FROM company
+       WHERE id = 2;
+
+
+       select *
+       from employee;
 *****
