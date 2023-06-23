@@ -224,3 +224,11 @@ values ('Ivan', 'Sidorov', 500, 1),
        select *
        from employee;
 *****
+***** SQL. 15. Обновление строк - UPDATE
+*****
+UPDATE employee
+SET company_id = 1,
+    salary     = 1700
+WHERE id = 10 OR id = 9
+RETURNING id, first_name || ' ' || employee.last_name fio;
+*****
