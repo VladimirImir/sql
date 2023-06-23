@@ -232,3 +232,5 @@ SET company_id = 1,
 WHERE id = 10 OR id = 9
 RETURNING id, first_name || ' ' || employee.last_name fio;
 *****
+***** SQL. 17. Нормализация баз данных. Теория
+*****
