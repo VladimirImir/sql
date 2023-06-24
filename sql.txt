@@ -240,3 +240,29 @@ RETURNING id, first_name || ' ' || employee.last_name fio;
 *****
 ***** SQL. 19. Связи между таблицами
 *****
+*****
+***** SQL. 20. Соединение таблиц. INNER & CROSS JOIN
+*****
+SELECT company.name,
+       employee.first_name || employee.last_name fio
+FROM employee,
+     company
+WHERE employee.company_id = company.id;
+
+SELECT c.name,
+       employee.first_name || employee.last_name fio
+FROM employee
+         INNER JOIN company c ON employee.company_id = c.id;
+
+-- INNER JOIN
+-- CROSS JOIN
+-- LEFT OUTER JOIN
+-- RIGHT OUTER JOIN
+-- FULL OUTER JOIN
+-- **************
+-- JOIN
+-- CROSS JOIN
+-- LEFT JOIN
+-- RIGHT JOIN
+-- FULL JOIN
+*****
