@@ -325,3 +325,12 @@ FROM employee e
          FULL JOIN company c
                     ON e.company_id = c.id;
 *****
+***** SQL. 22. Группировки запросов. GROUP BY & HAVING
+*****
+select company.name, count(e.id)
+from company
+         left join employee e ON company.id = e.company_id
+-- WHERE company.name = 'Amazon'
+GROUP BY company.id
+HAVING count(e.id) > 0;
+*****
