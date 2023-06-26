@@ -389,3 +389,18 @@ from employee_view;
 
 REFRESH MATERIALIZED VIEW m_employee_view;
 *****
+***** SQL. 25. Изменение таблиц. ALTER
+*****
+ALTER TABLE IF EXISTS employee
+ADD COLUMN gender INT;
+
+ALTER TABLE employee
+ALTER COLUMN gender SET NOT NULL ;
+
+ALTER TABLE employee
+DROP COLUMN gender;
+
+update employee
+set gender = 1
+where id <= 5;
+*****
