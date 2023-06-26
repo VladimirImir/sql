@@ -347,3 +347,45 @@ from company
 left join employee e ON company.id = e.company_id
 ORDER BY company.name;
 *****
+***** SQL. 24. Представление. View
+*****
+CREATE VIEW employee_view AS
+select company.name,
+       e.last_name,
+       e.salary,
+       max(e.salary) OVER (PARTITION BY company.name),
+       min(e.salary) OVER (PARTITION BY company.name)
+       --count(*) OVER (),
+       --max(e.salary) OVER (),
+       --row_number() OVER (partition by company.name),
+       --dense_rank() OVER (partition by company.name ORDER BY e.salary nulls first )
+from company
+left join employee e ON company.id = e.company_id
+ORDER BY company.name;
+
+select *
+from employee_view
+where name = 'Facebook';
+
+CREATE MATERIALIZED VIEW m_employee_view AS
+select company.name,
+       e.last_name,
+       e.salary,
+       max(e.salary) OVER (PARTITION BY company.name),
+       min(e.salary) OVER (PARTITION BY company.name)
+       --count(*) OVER (),
+       --max(e.salary) OVER (),
+       --row_number() OVER (partition by company.name),
+       --dense_rank() OVER (partition by company.name ORDER BY e.salary nulls first )
+from company
+         left join employee e ON company.id = e.company_id
+ORDER BY company.name;
+
+select *
+from m_employee_view;
+
+select *
+from employee_view;
+
+REFRESH MATERIALIZED VIEW m_employee_view;
+*****
