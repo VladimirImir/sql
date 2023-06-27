@@ -676,3 +676,15 @@ values (1, '2'), (2, '4'), (5, '6'), (7, '9');
 *****
 ***** SQL. 28. Индексы. B-Tree. Часть 1
 *****
+***** SQL. 29. Индексы. B-Tree. Часть 2
+*****
+select *
+from ticket
+where id = 29
+and passenger_no = 'DSA581';
+
+CREATE UNIQUE INDEX unique_flight_id_seat_no_idx ON ticket (flight_id, seat_no);
+
+select count(distinct flight_id) from ticket;
+select count(*) from ticket;
+*****
