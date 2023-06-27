@@ -688,3 +688,26 @@ CREATE UNIQUE INDEX unique_flight_id_seat_no_idx ON ticket (flight_id, seat_no);
 select count(distinct flight_id) from ticket;
 select count(*) from ticket;
 *****
+***** SQL. 30. План выполнения запросов. Основы
+*****
+explain select *
+from ticket
+where passenger_name like 'Иван%';
+
+explain
+    select flight_id,count(*)
+from ticket
+group by flight_id;
+
+select reltuples,
+       relkind,
+       relpages
+from pg_class
+where relname = 'ticket';
+
+select avg(bit_length(passenger_no) / 8),
+       avg(bit_length(passenger_name) / 8),
+       avg(bit_length(seat_no) / 8)
+from ticket;
+
+*****
