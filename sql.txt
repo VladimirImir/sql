@@ -845,3 +845,5 @@ values ('Новый боинг');
 select *
 from audit;
 *****
+***** SQL. 37. DWH. BigQuery
+*****
