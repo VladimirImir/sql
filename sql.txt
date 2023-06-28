@@ -762,3 +762,49 @@ where number1 < 1000 or number2 > 90000;
 -- index scan.
 -- bitmap scan (index scan, heap scan).
 *****
+***** SQL. 32. План выполнения запросов. JOINs
+*****
+explain analyze
+select *
+from test1
+where number1 < 10000;
+
+create table test2 (
+    id SERIAL PRIMARY KEY ,
+    test1_id INT REFERENCES test1 (id) NOT NULL ,
+    number1 INT NOT NULL ,
+    number2 INT NOT NULL ,
+    value VARCHAR(32) NOT NULL
+);
+
+insert into test2 (test1_id, number1, number2, value)
+select id,
+       random() * number1,
+       random() * number2,
+       value
+from test1;
+
+create index test2_number1_idx on test2 (number1);
+create index test2_number2_idx on test2 (number2);
+create index test2_test1_id_idx on test2 (test1_id);
+
+explain analyze
+select *
+from test1
+         join test2 t on test1.id = t.test1_id
+limit 100;
+
+explain analyze
+select *
+from test1 t1
+         --join (select * from test2 order by test1_id) t2
+         join test2 t2
+         on t1.id = t2.test1_id;
+
+analyze test2;
+
+
+-- nested loop
+-- hash join
+-- merge join
+*****
