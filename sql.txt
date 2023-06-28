@@ -711,3 +711,54 @@ select avg(bit_length(passenger_no) / 8),
 from ticket;
 
 *****
+***** SQL. 31. План выполнения запросов. Индексы
+*****
+explain
+select *
+from ticket
+where id = 25;
+
+create table test1 (
+    id SERIAL PRIMARY KEY ,
+    number1 INT NOT NULL ,
+    number2 INT NOT NULL ,
+    value VARCHAR(32) NOT NULL
+);
+
+create index test1_number1_idx ON test1(number1);
+create index test1_number2_idx ON test1(number2);
+
+insert into test1 (number1, number2, value)
+select random() * generate_series,
+       random() * generate_series,
+       generate_series
+from generate_series(1, 100000);
+
+select relname,
+       reltuples,
+       relkind,
+       relpages
+from pg_class
+where relname like 'test1%';
+
+analyse test1;
+
+explain
+select number1
+from test1
+where number1 = 1000;
+
+explain
+select *
+from test1
+where number1 < 1000 and number1 > 90000;
+
+explain
+select *
+from test1
+where number1 < 1000 or number2 > 90000;
+
+-- index only scan.
+-- index scan.
+-- bitmap scan (index scan, heap scan).
+*****
