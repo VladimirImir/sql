@@ -847,3 +847,5 @@ from audit;
 *****
 ***** SQL. 37. DWH. BigQuery
 *****
+***** SQL. 38. NoSQL. Теорема CAP
+*****
